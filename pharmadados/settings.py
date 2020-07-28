@@ -79,7 +79,7 @@ try:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'pharmadados',
+            'NAME': os.environ['DB_NAME'],
             'USER': os.environ['DB_USER'],
             'PASSWORD': os.environ['DB_PASSWORD'],
             'HOST': os.environ['DB_HOST'],
@@ -89,6 +89,7 @@ try:
 except KeyError as err:
     raise KeyError(
         'Database credentials not assigned. Check the environment for\n'
+        'DB_NAME\n'
         'DB_USER\n'
         'DB_PASSWORD\n'
         'DB_HOST\n'
