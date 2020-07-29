@@ -27,7 +27,7 @@ except KeyError as err:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pharmadados.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
