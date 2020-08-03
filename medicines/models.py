@@ -21,18 +21,29 @@ class Source (models.Model):
     def __str__(self):
         return f'{self.name} ({self.url})'
 
+    def html(self):
+        return f'<a href="{self.url}">{self.name}</a>'
+
 
 class Info (models.Model):
+    class Meta:
+        ordering = ['-id']
+
     TYPE_CHOICES = [(0, 'News'), (1, 'Article')]
 
-    type = models.SmallIntegerField(choices=TYPE_CHOICES)
     medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
-
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
+
+    type = models.SmallIntegerField(choices=TYPE_CHOICES)
+
     title = models.CharField(max_length=150)
     description = models.TextField()
-    url = models.URLField()
-    img_src = models.URLField(default='', name='Image Source')
+
+    url = models.URLField(verbose_name='URL', max_length=1000)
+    img_src = models.URLField(
+        null=True, blank=True, max_length=1000,
+        verbose_name='Image Source'
+    )
 
     report_count = models.PositiveIntegerField(default=0)
 

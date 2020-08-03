@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'medicines/css/cards.css' %}">
+    <title>{{ obj.name }}</title>
+</head>
+<body>
+    {% include 'search_bar.djt' %}
+    <h1>{{ obj.name }}</h1>
+    {% for info in obj.info_set.all|slice:'10' %}
+        <div class="info-card">
+            <div class='card-container'>
+            {% if info.img_src %}
+                <div class="info-img-container">
+                    <img class="info-img" src="{{info.img_src}}">
+                </div>
+            {% endif %}
+            <a class='info-title' href="{{ info.url }}"> {{ info.title }} </a>
+            <p class='info-description'> {{ info.description }}</p>
+            <p class='source-text'>Fonte: {{info.source.html|safe}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>

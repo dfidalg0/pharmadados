@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de busca para {{ query }}</title>
+</head>
+<body>
+    {% include 'search_bar.djt' %}
+    <h2>Resultados de busca para {{ query }}</h2>
+    <ul>
+    {% for result in results %}
+        <li><a href="{{ result.get_absolute_url }}"> {{ result }} </a></li>
+        {% with first=result.info_set.first %}
+            <span><b>Resultado mais recente</b></span> <br>
+            <span>{{first}}</span> <br>
+            <span><font size="-1">Fonte: {{first.source.html|safe}}</font></span> <br>
+        {% endwith %}
+    {% endfor %}
+    </ul>
+</body>
+</html>

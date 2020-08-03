@@ -1,0 +1,58 @@
+body {
+    text-align: center;
+}
+
+.info-card {
+    max-width: 500pt;
+    padding-bottom: 10px;
+    padding-left : 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.card-container {
+    min-height: 110pt;
+    text-align: justify;
+    overflow: visible;
+    border-radius: 8px;
+    border-style: ridge;
+    border-width: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top : 15px;
+    padding-bottom: 3px;
+}
+
+.info-description {
+    font-family: 'Roboto';
+    font-size: 11pt;
+}
+
+.info-title {
+    color: blue;
+    text-decoration: none;
+    font-size: 13pt;
+}
+
+.source-text {
+    font-size: 9pt;
+    text-align: right;
+    bottom: 0px;
+}
+
+.source-text a {
+    color: blue;
+    text-decoration: none;
+}
+
+.info-img-container {
+    width: 120pt;
+    float: left;
+    height: 100%;
+    padding-right: 10px;
+}
+
+.info-img {
+    width: inherit;
+}
