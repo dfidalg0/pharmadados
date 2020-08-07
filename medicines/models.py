@@ -5,6 +5,7 @@ from django.urls import reverse
 # Create your models here.
 class Medicine (models.Model):
     name = models.CharField(max_length=50, unique=True)
+    en_name = models.CharField(max_length=50, verbose_name='English name')
 
     def get_absolute_url(self):
         return reverse('medicines', args=[str(self.id)])
@@ -29,12 +30,8 @@ class Info (models.Model):
     class Meta:
         ordering = ['-id']
 
-    TYPE_CHOICES = [(0, 'News'), (1, 'Article')]
-
     medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
-
-    type = models.SmallIntegerField(choices=TYPE_CHOICES)
 
     title = models.CharField(max_length=150)
     description = models.TextField()
