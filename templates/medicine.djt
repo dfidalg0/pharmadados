@@ -37,12 +37,18 @@
                         <div id="main" class="container">
 
                         <div class="grid-style">
-                            {% for info in obj.info_set.all|slice:'10' %}
+                            {% for info in obj.info_set.all|slice:'100' %}
                                 <div>
                                     <div class="box">
-                                        <div class="image fit">
-                                            <img src="{{info.img_src}}" alt="" />
-                                        </div>
+                                        {% if info.img_src %}
+                                            <div class="image fit">
+                                                <img src="{{info.img_src}}" alt="" />
+                                            </div>
+                                        {% else %}
+                                            <div class="image fit">
+                                                <img src={% static "images/no_image.jpg" %} alt="" />
+                                            </div>
+                                        {% endif %}
                                         <div class="content">
                                             <header class="align-center">
                                                 <p>{{info.source.html|safe}}</p>
