@@ -1,29 +1,87 @@
 {% load static %}
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Hielo by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
+	</head>
+	<body class="subpage">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'medicines/css/cards.css' %}">
-    <title>{{ obj.name }}</title>
-</head>
-<body>
-    {% include 'search_bar.djt' %}
-    <h1>{{ obj.name }}</h1>
-    {% for info in obj.info_set.all|slice:'10' %}
-        <div class="info-card">
-            <div class='card-container'>
-            {% if info.img_src %}
-                <div class="info-img-container">
-                    <img class="info-img" src="{{info.img_src}}">
-                </div>
-            {% endif %}
-            <a class='info-title' href="{{ info.url }}"> {{ info.title }} </a>
-            <p class='info-description'> {{ info.description }}</p>
-            <p class='source-text'>Fonte: {{info.source.html|safe}}</p>
-            </div>
-        </div>
-    {% endfor %}
-</body>
+		<!-- Header -->
+			<header id="header">
+				<div class="logo"><a href="index.html">Hielo <span>by TEMPLATED</span></a></div>
+			</header>
+
+        <section id="two" class="wrapper style3">
+		    <div class="inner">
+			    <header class="align-center">
+					<p>pharmadados</p>
+					<h2>{{ obj.name }}</h2>
+				</header>
+			</div>
+		</section>
+
+
+
+                <section id="one" class="wrapper style2">
+                    <div class="inner">
+
+                        <div id="main" class="container">
+
+                        <div class="grid-style">
+                            {% for info in obj.info_set.all|slice:'10' %}
+                                <div>
+                                    <div class="box">
+                                        <div class="image fit">
+                                            <img src="{{info.img_src}}" alt="" />
+                                        </div>
+                                        <div class="content">
+                                            <header class="align-center">
+                                                <p>{{info.source.html|safe}}</p>
+                                                <h2><a href="{{ info.url }}"> {{ info.title }}</a></h2>
+                                            </header>
+                                            <p>{{ info.description }}</p>
+                                            <footer class="align-center">
+                                                <a href="{{ info.url }}" class="button alt">Link da matéria</a>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                         </div>
+                         </div>
+                </section>
+
+
+         <div id="main" class="container">
+
+                <form action="/search">
+									<div class="row uniform">
+										<div class="9u 12u$(small)">
+											<input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
+										</div>
+										<div class="3u$ 12u$(small)">
+											<input type="submit" value="Buscar" class="fit" />
+										</div>
+									</div>
+								</form>
+	    </div>
+
+            <!-- Footer -->
+			<footer id="footer">
+				<div class="copyright">
+					&copy; pharmadados. All rights reserved.
+				</div>
+			</footer>
+
+
+    </body>
 </html>
