@@ -9,6 +9,9 @@ verify_ssl = true
 django = "*"
 beautifulsoup4 = "*"
 psycopg2-binary = "*"
+requests = "*"
+lxml = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.6"

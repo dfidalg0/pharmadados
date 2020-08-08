@@ -33,7 +33,7 @@ class Info (models.Model):
     medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
 
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150, unique=True)
     description = models.TextField()
 
     url = models.URLField(verbose_name='URL', max_length=1000)
