@@ -44,3 +44,7 @@ def search_results_view(req, *args, **kwargs):
     }
 
     return render(req, 'results.djt', context)
+
+
+def handler404(req, *arg, **kwargs):
+    return render(req, 'handler404.djt', {})

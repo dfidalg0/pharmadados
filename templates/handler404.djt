@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Pharmadados</title>
+		{% include 'components/links.djt' %}
+	</head>
+	<body class="subpage">
+
+		{% include "components/header.djt" %}
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>CES-22</p>
+						<h2>pharmadados</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Main -->
+			<div id="main" class="inner">
+                <center>
+                    <header>
+                        <h2>Erro 404</h2>
+                        <h3> A página que você está procurando não existe </h3>
+                        <a class="button small special" href="/"> Voltar para o início </a>
+                    </header>
+                </center>
+			</div>
+
+			<footer id="footer" style="position:fixed; bottom: 0; width:100%;">
+				<div class="copyright">
+					Projeto de final de curso de CES-22 - Pharmadados
+				</div>
+			</footer>
+	</body>
+</html>
