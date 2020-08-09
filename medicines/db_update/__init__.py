@@ -2,7 +2,6 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from medicines.models import Medicine, Source, Info
 from concurrent.futures import ThreadPoolExecutor
 from pickle import loads
-from timeit import default_timer as timer
 
 
 def param(q):
@@ -14,17 +13,19 @@ def param(q):
 
 def update():
     print('Performing database update...')
-    t0 = timer()
 
     sources = Source.objects.all()
     for medicine in Medicine.objects.iterator():
+        print(medicine)
         query = param(medicine.name)
         functions = list(
             map(loads, map(lambda s: s.scrap_function, sources))
         )
 
-        with ThreadPoolExecutor(max_workers=len(functions)) as pool:
+        with ThreadPoolExecutor(max_workers=2*len(functions)) as pool:
             results = list(pool.map(query, functions))
+
+        print(medicine)
 
         to_create = []
 
@@ -36,7 +37,7 @@ def update():
 
         Info.objects.bulk_create(to_create, ignore_conflicts=True)
 
-    print(f'Database update completed ({timer() - t0} sec)')
+    print(f'Database update completed')
 
 
 def run():
