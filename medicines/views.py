@@ -13,7 +13,18 @@ def medicine_view(req, id, *args, **kwargs):
     except Medicine.DoesNotExist:
         raise Http404
 
-    return render(req, 'medicine.djt', {'obj': obj})
+    page = req.GET.get('page', 1)
+
+    info_all = obj.info_set.all()
+
+    info = Paginator(info_all, 12).get_page(page)
+
+    context = {
+        'info': info,
+        'obj': obj
+    }
+
+    return render(req, 'medicine.djt', context)
 
 
 def search_page_view(req, *args, **kwargs):

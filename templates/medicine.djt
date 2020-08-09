@@ -15,71 +15,70 @@
 	</head>
 	<body class="subpage">
 
-		<!-- Header -->
-			<header id="header">
-				<div class="logo"><a href="index.html">Hielo <span>by TEMPLATED</span></a></div>
-			</header>
+		{% include "header.djt" %}
+
 
         <section id="two" class="wrapper style3">
-		    <div class="inner">
-			    <header class="align-center">
-					<p>pharmadados</p>
-					<h2>{{ obj.name }}</h2>
-				</header>
-			</div>
-		</section>
+            <div class="inner">
+                <header class="align-center">
+                    <p>pharmadados</p>
+                    <h2>{{ obj.name }}</h2>
+                </header>
+            </div>
+        </section>
 
 
 
-                <section id="one" class="wrapper style2">
-                    <div class="inner">
+        <section id="one" class="wrapper style2">
+            <div class="inner">
 
-                        <div id="main" class="container">
+                <div id="main" class="container">
 
-                        <div class="grid-style">
-                            {% for info in obj.info_set.all|slice:'100' %}
-                                <div>
-                                    <div class="box">
-                                        {% if info.img_src %}
-                                            <div class="image fit">
-                                                <img src="{{info.img_src}}" alt="" />
-                                            </div>
-                                        {% else %}
-                                            <div class="image fit">
-                                                <img src={% static "images/no_image.jpg" %} alt="" />
-                                            </div>
-                                        {% endif %}
-                                        <div class="content">
-                                            <header class="align-center">
-                                                <p>{{info.source.html|safe}}</p>
-                                                <h2><a href="{{ info.url }}"> {{ info.title }}</a></h2>
-                                            </header>
-                                            <p>{{ info.description }}</p>
-                                            <footer class="align-center">
-                                                <a href="{{ info.url }}" class="button alt">Link da matéria</a>
-                                            </footer>
+                    <div class="grid-style">
+                        {% for info in obj.info_set.all|slice:'40' %}
+                            <div>
+                                <div class="box">
+                                    {% if info.img_src %}
+                                        <div class="image fit">
+                                            <img src="{{info.img_src}}" alt="" />
                                         </div>
+                                    {% else %}
+                                        <div class="image fit">
+                                            <img src={% static "images/no_image.jpg" %} alt="" />
+                                        </div>
+                                    {% endif %}
+                                    <div class="content">
+                                        <header class="align-center">
+                                            <p>{{info.source.html|safe}}</p>
+                                            <h2><a href="{{ info.url }}"> {{ info.title }}</a></h2>
+                                        </header>
+                                        <p>{{ info.description }}</p>
+                                        <footer class="align-center">
+                                            <a href="{{ info.url }}" class="button alt">Link da matéria</a>
+                                        </footer>
                                     </div>
                                 </div>
-                            {% endfor %}
-                         </div>
-                         </div>
-                </section>
+                            </div>
+                        {% endfor %}
+                     </div>
+                 </div>
+            </div>
+        </section>
 
+        <div id="main" class="container">
 
-         <div id="main" class="container">
+            <form action="/search">
+                <div class="row uniform">
+                    <div class="9u 12u$(small)">
+                        <input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
+                    </div>
+                    <div class="3u$ 12u$(small)">
+                        <input type="submit" value="Buscar" class="fit" />
+                    </div>
+                </div>
+            </form>
+        </div>
 
-                <form action="/search">
-									<div class="row uniform">
-										<div class="9u 12u$(small)">
-											<input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
-										</div>
-										<div class="3u$ 12u$(small)">
-											<input type="submit" value="Buscar" class="fit" />
-										</div>
-									</div>
-								</form>
-	    </div>
 
             <!-- Footer -->
 			<footer id="footer">
