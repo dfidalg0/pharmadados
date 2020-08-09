@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(font-awesome.min.css);
+@import url('/static/assets/css/font-awesome.min.css');
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
 
 /*
@@ -3711,7 +3711,7 @@
 		background: rgba(0, 0, 0, 0.975);
 		color: #a6a6a6;
 		cursor: default;
-		height: 3.25em;
+		height: 3.75em;
 		left: 0;
 		line-height: 3.25em;
 		position: fixed;
@@ -4265,6 +4265,10 @@
 			background-attachment: scroll;
 		}
 
+		body {
+			min-height: 100%;
+		}
+
 /* Main */
 
 	#main {
@@ -4309,4 +4313,35 @@
 				padding: 3rem 0 1rem 0 ;
 			}
 
+		}
+
+		.button-next {
+			float: right;
+			padding-right: 100pt;
+		}
+
+		.button-prev {
+			float: left;
+			padding-left: 100pt;
+		}
+
+		.search-bar-left {
+			position: fixed;
+			top: 3.5px;
+		}
+
+		#left-search-button {
+			right: 10pt;
+		}
+
+		#left-search-text {
+			right: 105pt;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.result-name:hover {
+			color: darkmagenta;
 		}

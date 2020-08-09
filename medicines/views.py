@@ -17,11 +17,11 @@ def medicine_view(req, id, *args, **kwargs):
 
     info_all = obj.info_set.all()
 
-    info = Paginator(info_all, 12).get_page(page)
+    info_obj = Paginator(info_all, 12).get_page(page)
 
     context = {
-        'info': info,
-        'obj': obj
+        'name': obj.name,
+        'info_obj': info_obj
     }
 
     return render(req, 'medicine.djt', context)
@@ -39,8 +39,6 @@ def search_results_view(req, *args, **kwargs):
     results = Medicine.objects.annotate(
         similarity=TrigramSimilarity('name', query),
     ).filter(similarity__gt=0.3).order_by('-similarity')
-
-    results = Paginator(results, 10).get_page(page)
 
     context = {
         'results': results,

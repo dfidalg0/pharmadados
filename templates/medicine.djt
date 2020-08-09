@@ -7,86 +7,73 @@
 -->
 <html>
 	<head>
-		<title>Hielo by TEMPLATED</title>
+		<title> {{ name }} </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
+        <link rel="shortcut icon" href={% static "favicon.ico" %}/>
 	</head>
 	<body class="subpage">
 
 		{% include "header.djt" %}
 
-
         <section id="two" class="wrapper style3">
-            <div class="inner">
-                <header class="align-center">
-                    <p>pharmadados</p>
-                    <h2>{{ obj.name }}</h2>
-                </header>
-            </div>
-        </section>
-
-
+		    <div class="inner">
+			    <header class="align-center">
+					<p>pharmadados</p>
+					<h2>{{ name }}</h2>
+				</header>
+			</div>
+		</section>
 
         <section id="one" class="wrapper style2">
             <div class="inner">
-
                 <div id="main" class="container">
+                        <div class="grid-style">
+                            {% for info in info_obj %}
+                                <div>
+                                    <div class="box">
+                                        {% if info.img_src %}
+                                            <div class="image fit">
+                                                <img src="{{info.img_src}}" alt="" />
+                                            </div>
+                                        {% else %}
+                                            <div class="image fit">
+                                                <img src={% static "images/no_image.jpg" %} alt="" />
+                                            </div>
+                                        {% endif %}
 
-                    <div class="grid-style">
-                        {% for info in obj.info_set.all|slice:'40' %}
-                            <div>
-                                <div class="box">
-                                    {% if info.img_src %}
-                                        <div class="image fit">
-                                            <img src="{{info.img_src}}" alt="" />
+                                        <div class="content">
+                                            <header class="align-center">
+                                                <p>{{info.source.html|safe}}</p>
+                                                <h2><a href="{{ info.url }}"> {{ info.title }}</a></h2>
+                                            </header>
+                                            <p>{{ info.description }}</p>
+                                            <footer class="align-center">
+                                                <a href="{{ info.url }}" class="button alt">Link da matéria</a>
+                                            </footer>
                                         </div>
-                                    {% else %}
-                                        <div class="image fit">
-                                            <img src={% static "images/no_image.jpg" %} alt="" />
-                                        </div>
-                                    {% endif %}
-                                    <div class="content">
-                                        <header class="align-center">
-                                            <p>{{info.source.html|safe}}</p>
-                                            <h2><a href="{{ info.url }}"> {{ info.title }}</a></h2>
-                                        </header>
-                                        <p>{{ info.description }}</p>
-                                        <footer class="align-center">
-                                            <a href="{{ info.url }}" class="button alt">Link da matéria</a>
-                                        </footer>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
                      </div>
                  </div>
             </div>
+
+            {% if info_obj.has_previous %}
+                <a class="button-prev button special" href="?page={{info_obj.previous_page_number}}"> < Anterior </a>
+            {% else %}
+                <span class="button-prev button special disabled"> < Anterior </span>
+            {% endif %}
+            {% if info_obj.has_next %}
+                <a class="button-next button special" href="?page={{info_obj.next_page_number}}"> Próxima > </a>
+            {% else %}
+                <span class="button-next button special disabled"> Próxima > </span>
+            {% endif %}
+
         </section>
 
-        <div id="main" class="container">
-
-            <form action="/search">
-                <div class="row uniform">
-                    <div class="9u 12u$(small)">
-                        <input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
-                    </div>
-                    <div class="3u$ 12u$(small)">
-                        <input type="submit" value="Buscar" class="fit" />
-                    </div>
-                </div>
-            </form>
-        </div>
-
-
-            <!-- Footer -->
-			<footer id="footer">
-				<div class="copyright">
-					&copy; pharmadados. All rights reserved.
-				</div>
-			</footer>
-
-
+        {% include 'footer.djt' %}
     </body>
 </html>

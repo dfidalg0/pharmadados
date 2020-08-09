@@ -11,6 +11,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
+		<link rel="shortcut icon" href={% static "favicon.ico" %}/>
 	</head>
 	<body class="subpage">
 
@@ -35,29 +36,15 @@
                             <input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
                         </div>
                         <div class="3u$ 12u$(small)">
-                            <input type="submit" value="Buscar" class="fit" />
+                            <input type="submit" value="Buscar" class="button special icon fa-search" />
                         </div>
                     </div>
                 </form>
 			</div>
 
-			<footer id="footer">
-				<div class="container">
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-					</ul>
-				</div>
+			<footer id="footer" style="position:fixed; bottom: 0; width:100%;">
 				<div class="copyright">
-					&copy; Pharmadados. All rights reserved.
+					Projeto de final de curso de CES-22 - Pharmadados
 				</div>
 			</footer>
 	</body>
