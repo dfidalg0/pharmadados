@@ -16,7 +16,6 @@ def update():
 
     sources = Source.objects.all()
     for medicine in Medicine.objects.iterator():
-        print(medicine)
         query = param(medicine.name)
         functions = list(
             map(loads, map(lambda s: s.scrap_function, sources))
@@ -24,8 +23,6 @@ def update():
 
         with ThreadPoolExecutor(max_workers=2*len(functions)) as pool:
             results = list(pool.map(query, functions))
-
-        print(medicine)
 
         to_create = []
 
