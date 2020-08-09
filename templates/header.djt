@@ -1,0 +1,14 @@
+<header id="header">
+    <div class="logo"><a href="/">pharmadados <span> by ADP </span></a></div>
+
+    {% if name %}
+    <div>
+        <form action="/search">
+            <input id="left-search-button" type="submit" value="Buscar" class="button search-bar-left"/>
+            <div id="left-search-text" class="2u$ 12u$(xsmall) search-bar-left">
+                <input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</header>

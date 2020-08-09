@@ -1,11 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar</title>
-</head>
-<body>
-    {% include 'search_bar.djt' %}
-</body>
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Pharmadados</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
+		<link rel="shortcut icon" href={% static "favicon.ico" %}/>
+	</head>
+	<body class="subpage">
+
+		{% include "header.djt" %}
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>CES-22</p>
+						<h2>pharmadados</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Main -->
+			<div id="main" class="container">
+
+                <form action="/search">
+                    <div class="row uniform">
+                        <div class="9u 12u$(small)">
+                            <input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
+                        </div>
+                        <div class="3u$ 12u$(small)">
+                            <input type="submit" value="Buscar" class="button special icon fa-search" />
+                        </div>
+                    </div>
+                </form>
+			</div>
+
+			<footer id="footer" style="position:fixed; bottom: 0; width:100%;">
+				<div class="copyright">
+					Projeto de final de curso de CES-22 - Pharmadados
+				</div>
+			</footer>
+	</body>
 </html>

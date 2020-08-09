@@ -1,48 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de busca para {{ query }}</title>
-</head>
-<body>
-    {% include 'search_bar.djt' %}
-    <h2>Resultados de busca para {{ query }}</h2>
-    <ul>
-    {% for result in results %}
-        <li><a href="{{ result.get_absolute_url }}"> {{ result }} </a></li>
-        {% with first=result.info_set.first %}
-            <span><b>Notícia mais recente</b></span> <br>
-            <span>{{first}}</span> <br>
-            <span><font size="-1">Fonte: {{first.source.html|safe}}</font></span> <br>
-            <span><b>Artigos</b></span> <br>
-            <a href=
-            "https://rnp-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Basic&tab=default_tab&indx=1&dum=true&srt=date&vid=CAPES_V1&vl(freeText0)={{result}}&scp.scps=scope:(CAPES),primo_central_multiple_fe"
-            target="_blank">
-                CAPES
-            </a> <br>
-            <a href="https://search.scielo.org/?lang=pt&count=15&from=0&output=site&sort=&format=summary&fb=&page=1&q={{result}}" target="_blank">
-                SciELO
-            </a> <br>
-            <a href="https://pubmed.ncbi.nlm.nih.gov/?term={{result.en_name}}&sort=date" target="_blank">
-                National Library of Medicine
-            </a>(em inglês) <br>
-            <a href="https://www.sciencedirect.com/search?qs={{result.en_name}}&sortBy=date" target="_blank">
-                ScienceDirect
-            </a>(em inglês) <br>
-        {% endwith %}
-    {% endfor %}
-    </ul>
-    <br>
-    {% if results.has_previous %}
-        <a href="?q={{query}}&page={{results.previous_page_number}}"> Anterior </a>
-    {% else %}
-        <span> Anterior </span>
-    {% endif %}
-    {% if results.has_next %}
-        <a href="?q={{query}}&page={{results.next_page_number}}"> Próxima </a>
-    {% else %}
-        <span> Próxima </span>
-    {% endif %}
-</body>
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title> Resultados de busca para {{ query }} - Pharmadados </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
+		<link rel="shortcut icon" href={% static "favicon.ico" %}/>
+	</head>
+	<body class="subpage">
+
+		{% include "header.djt" %}
+
+		<!-- One -->
+			<section id="One" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>CES-22</p>
+						<h2>pharmadados</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Main -->
+			<div id="main" class="container">
+
+                <form action="/search">
+					<div class="row uniform">
+						<div class="9u 12u$(small)">
+							<input type="text" name="q" value="{{ query }}" placeholder="Pesquise um medicamento" />
+						</div>
+						<div class="3u$ 12u$(small)">
+							<input type="submit" value="Buscar" class="button special icon fa-search" />
+						</div>
+					</div>
+				</form>
+
+                <h2>Resultados de busca para {{ query }}</h2>
+                    <ul class = "alt">
+                    {% for result in results %}
+                        <li><a href="{{ result.get_absolute_url }}"> <h3 class="result-name"> {{ result }} </h3></a></li>
+                        {% with first=result.info_set.first %}
+                            <span><b>Notícia mais recente</b></span> <br>
+                            <span>{{first}}</span> <br>
+                            <span><font size="-1">Fonte: {{first.source.html|safe}}</font></span> <br>
+                            <span><b>Artigos</b></span> <br>
+							<table class="alt">
+								<tbody>
+									<tr>
+										<td>
+										<a href=
+										"https://rnp-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&initialSearch=true&mode=Basic&tab=default_tab&indx=1&dum=true&srt=date&vid=CAPES_V1&vl(freeText0)={{result}}&scp.scps=scope:(CAPES),primo_central_multiple_fe"
+										target="_blank">
+											CAPES
+										</a>
+										</td>
+										<td>
+										<a href="https://search.scielo.org/?lang=pt&count=15&from=0&output=site&sort=&format=summary&fb=&page=1&q={{result}}" target="_blank">
+											SciELO
+										</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+										<a href="https://pubmed.ncbi.nlm.nih.gov/?term={{result.en_name}}&sort=date" target="_blank">
+											National Library of Medicine
+										</a>(em inglês) <br>
+										</td>
+										<td>
+										<a href="https://www.sciencedirect.com/search?qs={{result.en_name}}&sortBy=date" target="_blank">
+											ScienceDirect
+										</a>(em inglês) <br>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+                        {% endwith %}
+                    {% endfor %}
+                    </ul>
+            </div>
+
+			{% include 'footer.djt' %}
+	</body>
 </html>
