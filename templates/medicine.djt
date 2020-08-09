@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE HTML>
 <!--
 	Hielo by TEMPLATED
@@ -8,15 +9,11 @@
 <html>
 	<head>
 		<title> {{ name }} </title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
-        <link rel="shortcut icon" href={% static "favicon.ico" %}/>
+		{% include 'components/links.djt' %}
 	</head>
 	<body class="subpage">
 
-		{% include "header.djt" %}
+		{% include "components/header.djt" %}
 
         <section id="two" class="wrapper style3">
 		    <div class="inner">
@@ -74,6 +71,6 @@
 
         </section>
 
-        {% include 'footer.djt' %}
+        {% include 'components/footer.djt' %}
     </body>
 </html>

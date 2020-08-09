@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE HTML>
 <!--
 	Hielo by TEMPLATED
@@ -8,14 +7,11 @@
 <html>
 	<head>
 		<title>Pharmadados</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href={% static "assets/css/main.css" %}/>
-		<link rel="shortcut icon" href={% static "favicon.ico" %}/>
+		{% include 'components/links.djt' %}
 	</head>
 	<body class="subpage">
 
-		{% include "header.djt" %}
+		{% include "components/header.djt" %}
 
 		<!-- One -->
 			<section id="One" class="wrapper style3">

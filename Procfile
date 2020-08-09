@@ -1,2 +1,2 @@
 release : python manage.py makemigrations && python manage.py migrate
-web: python manage.py runserver --noreload "0.0.0.0:$PORT"
+web: UPDATE_DB=true gunicorn -b 0.0.0.0:$PORT pharmadados.wsgi

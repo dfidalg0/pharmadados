@@ -6,7 +6,7 @@ class MedicinesConfig(AppConfig):
 
     def ready(self):
         from .db_update import run
-        from sys import argv
+        import os
 
-        if '--noreload' in argv:
+        if os.environ.get('UPDATE_DB', '') == 'true':
             run()
