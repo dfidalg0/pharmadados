@@ -34,8 +34,6 @@ def search_page_view(req, *args, **kwargs):
 def search_results_view(req, *args, **kwargs):
     query = req.GET.get('q', '')
 
-    page = req.GET.get('page', 1)
-
     results = Medicine.objects.annotate(
         similarity=TrigramSimilarity('name', query),
     ).filter(similarity__gt=0.3).order_by('-similarity')
