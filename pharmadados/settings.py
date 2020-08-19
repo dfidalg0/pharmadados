@@ -77,26 +77,23 @@ WSGI_APPLICATION = 'pharmadados.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-try:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.environ['DB_NAME'],
-            'USER': os.environ['DB_USER'],
-            'PASSWORD': os.environ['DB_PASSWORD'],
-            'HOST': os.environ['DB_HOST'],
-            'PORT': os.environ['DB_PORT']
-        }
+url = os.environ['DATABASE_URL']
+url = url[len('postgres://'):]
+
+user, pass_at_host, port_slash_name = url.split(':')
+password, host = pass_at_host.split('@')
+port, name = port_slash_name.split('/')
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': name,
+        'USER': user,
+        'PASSWORD': password,
+        'HOST': host,
+        'PORT': port
     }
-except KeyError as err:
-    raise KeyError(
-        'Database credentials not assigned. Check the environment for\n'
-        'DB_NAME\n'
-        'DB_USER\n'
-        'DB_PASSWORD\n'
-        'DB_HOST\n'
-        'DB_PORT'
-    ) from err
+}
 
 
 # Password validation
